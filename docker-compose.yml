@@ -43,7 +43,7 @@ services:
       EULA: TRUE
       TYPE: VANILLA
       MEMORY: 4G
-      VERSION: 1.19.2
+      VERSION: 1.19.3
     volumes:
       - game-fg_data:/data
     tty: true
