@@ -36,6 +36,21 @@ services:
       - "4326:4326"
       - "4327:4327"
 
+  fg:
+    image: itzg/minecraft-server@sha256:c8a6dc753c76195bb9dfb1f41666f4714689df85ea2fbd710358fa6331634e9b
+    restart: unless-stopped
+    labels:
+      restic-compose-backup.volumes: true
+    environment:
+      EULA: TRUE
+      TYPE: VANILLA
+      MEMORY: 4G
+      VERSION: 1.19.2
+    volumes:
+      - game-fg_data:/data
+    tty: true
+    stdin_open: true
+
   stoneblock3:
     image: itzg/minecraft-server@sha256:c8a6dc753c76195bb9dfb1f41666f4714689df85ea2fbd710358fa6331634e9b
     restart: unless-stopped
@@ -55,4 +70,5 @@ services:
 volumes:
   cache:
   web_data:
+  game-fg_data:
   game-sb3_data:
