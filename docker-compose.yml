@@ -27,6 +27,7 @@ services:
       restic-compose-backup.volumes: true
     environment:
       RWA_USERNAME: admin
+      RWA_PASSWORD: guest
       RWA_ADMIN: "TRUE"
     volumes:
       - web_data:/opt/rcon-web-admin/db
