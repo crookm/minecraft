@@ -16,9 +16,7 @@ services:
   router:
     image: itzg/mc-router@sha256:fc0c4d66e51e8729f6cf78308949ce9d012c0887db89566bedace446d34c51f5
     restart: unless-stopped
-    depends_on:
-      - stoneblock3
-    command: --mapping=sb3.mc.abcedea.net=stoneblock3:25565
+    command: --mapping=sb3.mc.abcedea.net=stoneblock3:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
     ports:
       - "25565:25565"
 
