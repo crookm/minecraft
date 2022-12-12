@@ -1,0 +1,58 @@
+---
+name: mc
+version: "3"
+services:
+  backup:
+    image: zettaio/restic-compose-backup@sha256:4e80b2aaabe479388b0f72936e378f3891d00e5019404607785525a9fe96058a
+    environment:
+      RESTIC_REPOSITORY: "b2:minecraft-9a7253"
+      RESTIC_PASSWORD: ${BAK_RESTIC_PASSWORD}
+      B2_ACCOUNT_ID: ${BAK_B2_ACCOUNT_ID}
+      B2_ACCOUNT_KEY: ${BAK_B2_ACCOUNT_KEY}
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - cache:/cache
+
+  router:
+    image: itzg/mc-router@sha256:fc0c4d66e51e8729f6cf78308949ce9d012c0887db89566bedace446d34c51f5
+    restart: unless-stopped
+    depends_on:
+      - stoneblock3
+    command: --mapping=sb3.mc.abcedea.net=stoneblock3:25565
+    ports:
+      - "25565:25565"
+
+  web:
+    image: itzg/rcon@sha256:d3aea0b5ce31e4a50da7012c7b3f3b5fa45e8e600fdbfc35f582ad0dab9a22a8
+    restart: unless-stopped
+    labels:
+      restic-compose-backup.volumes: true
+    environment:
+      RWA_USERNAME: admin
+      RWA_ADMIN: "TRUE"
+    volumes:
+      - web_data:/opt/rcon-web-admin/db
+    ports:
+      - "4326:4326"
+      - "4327:4327"
+
+  stoneblock3:
+    image: itzg/minecraft-server@sha256:c8a6dc753c76195bb9dfb1f41666f4714689df85ea2fbd710358fa6331634e9b
+    restart: unless-stopped
+    labels:
+      restic-compose-backup.volumes: true
+    environment:
+      EULA: TRUE
+      TYPE: FTBA
+      MEMORY: 8G
+      FTB_MODPACK_ID: 100
+      FTB_MODPACK_VERSION_ID: 2298
+    volumes:
+      - game-sb3_data:/data
+    tty: true
+    stdin_open: true
+
+volumes:
+  cache:
+  web_data:
+  game-sb3_data:
