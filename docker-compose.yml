@@ -60,7 +60,7 @@ services:
       TYPE: FTBA
       MEMORY: 8G
       FTB_MODPACK_ID: 100
-      FTB_MODPACK_VERSION_ID: 2298
+      FTB_MODPACK_VERSION_ID: 2308
     volumes:
       - game-sb3_data:/data
     tty: true
