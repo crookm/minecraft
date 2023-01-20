@@ -4,6 +4,7 @@ version: "3"
 services:
   backup:
     image: zettaio/restic-compose-backup@sha256:4e80b2aaabe479388b0f72936e378f3891d00e5019404607785525a9fe96058a
+    restart: unless-stopped
     environment:
       RESTIC_REPOSITORY: "b2:minecraft-9a7253"
       RESTIC_PASSWORD: ${BAK_RESTIC_PASSWORD}
