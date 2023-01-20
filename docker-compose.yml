@@ -3,7 +3,7 @@ name: mc
 version: "3"
 services:
   backup:
-    image: zettaio/restic-compose-backup@sha256:4e80b2aaabe479388b0f72936e378f3891d00e5019404607785525a9fe96058a
+    image: zettaio/restic-compose-backup
     restart: unless-stopped
     environment:
       RESTIC_REPOSITORY: "b2:minecraft-9a7253"
@@ -15,14 +15,14 @@ services:
       - cache:/cache
 
   router:
-    image: itzg/mc-router@sha256:fc0c4d66e51e8729f6cf78308949ce9d012c0887db89566bedace446d34c51f5
+    image: itzg/mc-router
     restart: unless-stopped
     command: --mapping=sb3.mc.abcedea.net=stoneblock3:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
     ports:
       - "25565:25565"
 
   web:
-    image: itzg/rcon@sha256:d3aea0b5ce31e4a50da7012c7b3f3b5fa45e8e600fdbfc35f582ad0dab9a22a8
+    image: itzg/rcon
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
@@ -37,7 +37,7 @@ services:
       - "4327:4327"
 
   fg:
-    image: itzg/minecraft-server@sha256:c8a6dc753c76195bb9dfb1f41666f4714689df85ea2fbd710358fa6331634e9b
+    image: itzg/minecraft-server
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
@@ -52,7 +52,7 @@ services:
     stdin_open: true
 
   stoneblock3:
-    image: itzg/minecraft-server@sha256:c8a6dc753c76195bb9dfb1f41666f4714689df85ea2fbd710358fa6331634e9b
+    image: itzg/minecraft-server
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
