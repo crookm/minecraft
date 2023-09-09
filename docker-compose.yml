@@ -21,21 +21,6 @@ services:
     ports:
       - "25565:25565"
 
-  web:
-    image: itzg/rcon
-    restart: unless-stopped
-    labels:
-      restic-compose-backup.volumes: true
-    environment:
-      RWA_USERNAME: admin
-      RWA_PASSWORD: guest
-      RWA_ADMIN: "TRUE"
-    volumes:
-      - web_data:/opt/rcon-web-admin/db
-    ports:
-      - "4326:4326"
-      - "4327:4327"
-
   fg:
     image: itzg/minecraft-server
     restart: unless-stopped
@@ -69,6 +54,5 @@ services:
 
 volumes:
   cache:
-  web_data:
   game-fg_data:
   game-sb3_data:
