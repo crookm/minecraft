@@ -37,7 +37,7 @@ services:
     stdin_open: true
 
   lostera:
-    image: itzg/minecraft-server:java8-multiarch
+    image: itzg/minecraft-server:java8
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
