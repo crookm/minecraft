@@ -43,9 +43,10 @@ services:
       restic-compose-backup.volumes: true
     environment:
       EULA: TRUE
-      TYPE: MODRINTH
       MEMORY: 8G
+      TYPE: MODRINTH
       MODRINTH_MODPACK: https://modrinth.com/modpack/the-lost-era/version/1.6.4
+      MODRINTH_IGNORE_MISSING_FILES: config/mcinstanceloader/pack.mcinstance
       WORLD_TYPE: BIOMESOP
     volumes:
       - game-le_data:/data
