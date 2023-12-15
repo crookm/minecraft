@@ -17,7 +17,7 @@ services:
   router:
     image: itzg/mc-router
     restart: unless-stopped
-    command: --mapping=sb3.mc.abcedea.net=stoneblock3:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
+    command: --mapping=le.mc.abcedea.net=le:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
     ports:
       - "25565:25565"
 
@@ -36,19 +36,18 @@ services:
     tty: true
     stdin_open: true
 
-  stoneblock3:
+  lostera:
     image: itzg/minecraft-server
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
     environment:
       EULA: TRUE
-      TYPE: FTBA
+      MOD_PLATFORM: MODRINTH
+      MODRINTH_MODPACK: https://modrinth.com/modpack/the-lost-era/version/1.6.4
       MEMORY: 8G
-      FTB_MODPACK_ID: 100
-      FTB_MODPACK_VERSION_ID: 2308
     volumes:
-      - game-sb3_data:/data
+      - game-le_data:/data
     tty: true
     stdin_open: true
 
@@ -56,3 +55,4 @@ volumes:
   cache:
   game-fg_data:
   game-sb3_data:
+  game-le_data:
