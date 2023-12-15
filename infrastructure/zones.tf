@@ -9,11 +9,11 @@ resource "cloudflare_record" "mc-fg" {
   proxied = false
 }
 
-resource "cloudflare_record" "mc-sb3" {
+resource "cloudflare_record" "mc-le" {
   zone_id = local.zone_id
   type    = "CNAME"
 
-  name  = "sb3.mc"
+  name  = "le.mc"
   value = local.dc_hostname
   ttl   = 1 # automatic
 
