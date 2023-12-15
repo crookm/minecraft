@@ -17,7 +17,7 @@ services:
   router:
     image: itzg/mc-router
     restart: unless-stopped
-    command: --mapping=le.mc.abcedea.net=le:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
+    command: --mapping=le.mc.abcedea.net=lostera:25565 --mapping=froggrove.mc.abcedea.net=fg:25565
     ports:
       - "25565:25565"
 
