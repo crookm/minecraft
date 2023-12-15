@@ -37,24 +37,16 @@ services:
     stdin_open: true
 
   lostera:
-    image: itzg/minecraft-server
+    image: itzg/minecraft-server:java8-multiarch
     restart: unless-stopped
     labels:
       restic-compose-backup.volumes: true
     environment:
       EULA: TRUE
       TYPE: MODRINTH
-      MOD_PLATFORM: MODRINTH
-      MODRINTH_MODPACK: p87Jiw2q
-      MODRINTH_VERSION: 1.6.4
+      MEMORY: 8G
+      MODRINTH_MODPACK: https://modrinth.com/modpack/the-lost-era/version/1.6.4
       WORLD_TYPE: BIOMESOP
-      OVERRIDE_SERVER_PROPERTIES: "true"
-      INIT_MEMORY: "4G"
-      MAX_MEMORY: "8G"
-      SYNC_CHUNK_WRITES: "false"
-      ENABLE_AUTOPAUSE: "true"
-      AUTOPAUSE_TIMEOUT_EST: 300
-      AUTOPAUSE_TIMEOUT_INIT: 30
     volumes:
       - game-le_data:/data
     tty: true
